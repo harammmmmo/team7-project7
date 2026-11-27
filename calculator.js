@@ -23,3 +23,11 @@ function calculateGPA(courses) {
     return totalCredits === 0 ? 0 :
         Number((totalPoints / totalCredits).toFixed(2));
 }
+
+const testCourses = [
+    { name: "물리학", credits: 3, grade: "A+" },
+    { name: "화학", credits: 3, grade: "A0" },
+    { name: "미적분학", credits: 2, grade: "B+" }
+];
+
+console.log(calculateGPA(testCourses));
