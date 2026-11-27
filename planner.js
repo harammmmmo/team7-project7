@@ -24,3 +24,18 @@ function validateTargetGPA(targetGPA) {
         && target >= 0
         && target <= 4.5;
 }
+
+// 목표 학점 달성에 필요한 이번 학기 평점 계산
+function calculateRequiredGPA(
+    prevCredits, prevGPA, newCredits, targetGPA
+) {
+    if (!validateTargetGPA(targetGPA) || newCredits <= 0) {
+        return null;
+    }
+
+    const totalCredits = prevCredits + newCredits;
+    const targetPoints = targetGPA * totalCredits;
+    const prevPoints = prevGPA * prevCredits;
+
+    return Math.max(0, (targetPoints - prevPoints) / newCredits);
+}
