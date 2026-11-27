@@ -15,6 +15,10 @@ function getGradePoint(grade) {
 }
 
 function calculateGPA(courses) {
+    if (!Array.isArray(courses)) {
+        return 0;
+    }
+
     let totalPoints = 0;
     let totalCredits = 0;
 
@@ -32,6 +36,10 @@ function calculateGPA(courses) {
 }
 
 function calculateTotalCredits(courses) {
+    if (!Array.isArray(courses)) {
+        return 0;
+    }
+
     let totalCredits = 0;
 
     for (const course of courses) {
@@ -46,6 +54,10 @@ function calculateTotalCredits(courses) {
 }
 
 function validateCourse(course) {
+    if (!course || typeof course !== "object") {
+        return false;
+    }
+
     const credits = Number(course.credits);
 
     return Number.isFinite(credits)
