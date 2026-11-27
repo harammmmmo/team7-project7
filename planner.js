@@ -39,3 +39,23 @@ function calculateRequiredGPA(
 
     return Math.max(0, (targetPoints - prevPoints) / newCredits);
 }
+// 목표 평점에 맞는 성적 추천
+function recommendGrades(courses, requiredGPA) {
+    if (requiredGPA > 4.5 || requiredGPA < 0) {
+        return null;
+    }
+
+    let grade = "A+";
+
+    for (let g in GRADE_POINTS) {
+        if (GRADE_POINTS[g] >= requiredGPA) {
+            grade = g;
+        }
+    }
+
+    return courses.map(course => ({
+        name: course.name,
+        credits: course.credits,
+        grade: grade
+    }));
+}
