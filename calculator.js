@@ -35,3 +35,12 @@ function calculateTotalCredits(courses) {
 
     return totalCredits;
 }
+function validateCourse(course) {
+    const credits = Number(course.credits);
+
+    return Number.isFinite(credits)
+        && credits > 0
+        && Object.prototype.hasOwnProperty.call(
+            gradePoints, course.grade
+        );
+}
