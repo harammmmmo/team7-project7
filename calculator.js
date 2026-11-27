@@ -19,6 +19,10 @@ function calculateGPA(courses) {
     let totalCredits = 0;
 
     for (const course of courses) {
+        if (!validateCourse(course)) {
+            continue;
+        }
+
         totalPoints += getGradePoint(course.grade) * course.credits;
         totalCredits += Number(course.credits);
     }
@@ -26,15 +30,21 @@ function calculateGPA(courses) {
     return totalCredits === 0 ? 0 :
         Number((totalPoints / totalCredits).toFixed(2));
 }
+
 function calculateTotalCredits(courses) {
     let totalCredits = 0;
 
     for (const course of courses) {
+        if (!validateCourse(course)) {
+            continue;
+        }
+
         totalCredits += Number(course.credits);
     }
 
     return totalCredits;
 }
+
 function validateCourse(course) {
     const credits = Number(course.credits);
 
