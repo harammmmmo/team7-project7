@@ -1,0 +1,134 @@
+/* 기본 화면 디자인 */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f9;
+    margin: 0;
+    padding: 20px;
+    color: #333;
+}
+
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #2563eb;
+}
+
+h2 {
+    color: #333;
+}
+/* 입력창 및 선택창 디자인 */
+input, select {
+    padding: 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 14px;
+    background-color: white;
+}
+
+input:focus, select:focus {
+    outline: 2px solid #2563eb;
+}
+
+/* 버튼 디자인 */
+button {
+    padding: 10px 16px;
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: #1d4ed8;
+}
+/* 학점 계산 결과 화면 */
+.result {
+    margin-top: 25px;
+    padding: 20px;
+    background-color: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.result p {
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+.gpa-value {
+    font-size: 32px;
+    font-weight: bold;
+    color: #2563eb;
+}
+
+/* 과목 목록 테이블 디자인 */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+th {
+    background-color: #e5e7eb;
+}
+/* 모바일 반응형 디자인 */
+@media screen and (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        margin: 10px auto;
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    input, select {
+        width: 100%;
+        margin-bottom: 8px;
+    }
+
+    button {
+        width: 100%;
+        margin-top: 5px;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+    }
+
+    th, td {
+        padding: 8px;
+        font-size: 12px;
+    }
+
+    .gpa-value {
+        font-size: 26px;
+    }
+}
