@@ -13,7 +13,7 @@ function addCourse() {
 
  const course = { name, credits, grade };
 courses.push(course);
-
+updateGPA();
     const list = document.getElementById("courseList");
     const item = document.createElement("li");
    
@@ -26,8 +26,15 @@ courses.push(course);
     deleteButton.onclick = function() {
         courses.splice(courses.indexOf(course), 1);
         item.remove();
+        updateGPA();
     };
 
     item.appendChild(deleteButton);
     list.appendChild(item);
+}
+
+function updateGPA() {
+    const result = calculateGPA(courses);
+    document.getElementById("gpa").textContent =
+        result === null ? "0.00" : result.toFixed(2);
 }
