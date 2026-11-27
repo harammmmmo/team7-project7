@@ -93,3 +93,42 @@ th, td {
 th {
     background-color: #e5e7eb;
 }
+/* 모바일 반응형 디자인 */
+@media screen and (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        margin: 10px auto;
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    input, select {
+        width: 100%;
+        margin-bottom: 8px;
+    }
+
+    button {
+        width: 100%;
+        margin-top: 5px;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+    }
+
+    th, td {
+        padding: 8px;
+        font-size: 12px;
+    }
+
+    .gpa-value {
+        font-size: 26px;
+    }
+}
