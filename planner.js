@@ -26,37 +26,42 @@ function validateTargetGPA(targetGPA) {
 }
 
 // 목표 평점에 맞는 성적 추천
+// 현재 성적을 유지하면서 목표 평점에 맞게 성적 향상
 function recommendGrades(courses, requiredGPA) {
-    if (!isAchievable(requiredGPA)) {
+    if (!isAchievable(requiredGPA) || courses.length === 0) {
         return null;
     }
 
-    const grades = Object.keys(GRADE_POINTS);
-    const result = courses.map(c => ({
-        ...c, grade: "A+"
-    }));
+    const grades = Object.keys(GRADE_POINTS).reverse();
+    const result = courses.map(c => ({ ...c }));
 
-    const totalCredits = courses.reduce(
+    const totalCredits = result.reduce(
         (sum, c) => sum + Number(c.credits), 0
     );
 
-    let points = totalCredits * 4.5;
+    let points = result.reduce(
+        (sum, c) => sum + GRADE_POINTS[c.grade] * c.credits, 0
+    );
 
-    for (let i = 1; i < grades.length; i++) {
+    while (points < requiredGPA * totalCredits) {
         for (const c of result) {
-            const loss = (GRADE_POINTS[c.grade]
-                - GRADE_POINTS[grades[i]]) * c.credits;
+            const i = grades.indexOf(c.grade);
 
-            if (points - loss >= requiredGPA * totalCredits) {
-                c.grade = grades[i];
-                points -= loss;
+            if (i < grades.length - 1) {
+                points += (GRADE_POINTS[grades[i + 1]]
+                    - GRADE_POINTS[c.grade]) * c.credits;
+
+                c.grade = grades[i + 1];
+            }
+
+            if (points >= requiredGPA * totalCredits) {
+                break;
             }
         }
     }
 
     return result;
 }
-
 // 목표 평점 달성 가능 여부 확인
 function isAchievable(requiredGPA) {
     return Number.isFinite(requiredGPA)
