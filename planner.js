@@ -41,27 +41,52 @@ function calculateRequiredGPA(
 }
 // 목표 평점에 맞는 성적 추천
 function recommendGrades(courses, requiredGPA) {
-    if (requiredGPA > 4.5 || requiredGPA < 0) {
+    if (!isAchievable(requiredGPA)) {
         return null;
     }
 
-    let grade = "A+";
+    const grades = Object.keys(GRADE_POINTS);
+    const result = courses.map(c => ({
+        ...c, grade: "A+"
+    }));
 
-    for (let g in GRADE_POINTS) {
-        if (GRADE_POINTS[g] >= requiredGPA) {
-            grade = g;
+    const totalCredits = courses.reduce(
+        (sum, c) => sum + Number(c.credits), 0
+    );
+
+    let points = totalCredits * 4.5;
+
+    for (let i = 1; i < grades.length; i++) {
+        for (const c of result) {
+            const loss = (GRADE_POINTS[c.grade]
+                - GRADE_POINTS[grades[i]]) * c.credits;
+
+            if (points - loss >= requiredGPA * totalCredits) {
+                c.grade = grades[i];
+                points -= loss;
+            }
         }
     }
 
-    return courses.map(course => ({
-        name: course.name,
-        credits: course.credits,
-        grade: grade
-    }));
+    return result;
 }
 // 목표 평점 달성 가능 여부 확인
 function isAchievable(requiredGPA) {
     return Number.isFinite(requiredGPA)
         && requiredGPA >= 0
         && requiredGPA <= 4.5;
+}
+// 목표 성적 추천 결과 출력
+function showRecommendation() {
+    const target = document.getElementById("targetGPA").value;
+
+    if (!validateTargetGPA(target) || courses.length === 0) {
+        alert("과목과 목표 평점을 입력하세요.");
+        return;
+    }
+
+    const result = recommendGrades(courses, Number(target));
+
+    document.getElementById("recommendResult").textContent =
+        result.map(c => c.name + ": " + c.grade).join(" / ");
 }

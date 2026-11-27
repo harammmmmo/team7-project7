@@ -27,7 +27,18 @@
     <button onclick="addCourse()">과목 추가</button>
     <ul id="courseList"></ul>
     <p>평균 학점: <span id="gpa">0.00</span> / 4.5</p>
-<script src="calculator.js"></script>
+   
+<h2>목표 학점 성적 추천</h2>
+
+<input type="number" id="targetGPA"
+       placeholder="목표 평점" min="0" max="4.5" step="0.1">
+
+<button onclick="showRecommendation()">성적 추천</button>
+
+ <p id="recommendResult"></p>
+
+    <script src="calculator.js"></script>
     <script src="app.js"></script>
+    <script src="planner.js"></script>
 </body>
 </html>
