@@ -3,9 +3,12 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>학점 계산기</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="container">
     <h1>학점 계산기</h1>
     <p>4.5 만점 학점 계산기</p>
 
@@ -26,7 +29,24 @@
 
     <button onclick="addCourse()">과목 추가</button>
     <ul id="courseList"></ul>
-    <p>평균 학점: <span id="gpa">0.00</span> / 4.5</p>
+
+<p>평균 학점: <span id="gpa">0.00</span> / 4.5</p>
+<p>총 이수학점: <span id="totalCredits">0</span>학점</p>
+
+<div class="gpa-visualization">
+    <h3>평균 학점 시각화</h3>
+    <p><span id="gpa-value">0.00</span> / 4.5</p>
+
+    <div class="gpa-bar-container">
+        <div id="gpa-bar"></div>
+    </div>
+
+    <div class="gpa-scale">
+        <span>0.0</span>
+        <span>2.25</span>
+        <span>4.5</span>
+    </div>
+</div>
    
 <h2>목표 학점 성적 추천</h2>
 
@@ -37,8 +57,10 @@
 
  <p id="recommendResult"></p>
 
-    <script src="calculator.js"></script>
-    <script src="app.js"></script>
-    <script src="planner.js"></script>
+</div>
+ <script src="calculator.js"></script>
+<script src="visualization.js"></script>
+<script src="app.js"></script>
+<script src="planner.js"></script>
 </body>
 </html>

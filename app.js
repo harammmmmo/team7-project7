@@ -38,5 +38,11 @@ document.getElementById("credits").value = "";
 function updateGPA() {
     const result = calculateGPA(courses);
     document.getElementById("gpa").textContent =
-        result === null ? "0.00" : result.toFixed(2);
+        result.toFixed(2);
+
+    const totalCredits = calculateTotalCredits(courses);
+    document.getElementById("totalCredits").textContent =
+        totalCredits;
+
+    visualizeGPA(result);
 }
