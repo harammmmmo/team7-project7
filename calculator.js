@@ -10,3 +10,16 @@ const grades = {
     "D0": 1.0,
     "F": 0
 };
+
+function calculateGPA(courses) {
+    let totalPoints = 0;
+    let totalCredits = 0;
+
+    for (const course of courses) {
+        totalPoints += grades[course.grade] * course.credits;
+        totalCredits += course.credits;
+    }
+
+    return totalCredits === 0 ? 0 :
+        Number((totalPoints / totalCredits).toFixed(2));
+}
