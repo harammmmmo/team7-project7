@@ -28,3 +28,31 @@ h1 {
 h2 {
     color: #333;
 }
+/* 입력창 및 선택창 디자인 */
+input, select {
+    padding: 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 14px;
+    background-color: white;
+}
+
+input:focus, select:focus {
+    outline: 2px solid #2563eb;
+}
+
+/* 버튼 디자인 */
+button {
+    padding: 10px 16px;
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: #1d4ed8;
+}
