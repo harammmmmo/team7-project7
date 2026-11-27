@@ -31,6 +31,8 @@ updateGPA();
 
     item.appendChild(deleteButton);
     list.appendChild(item);
+    document.getElementById("name").value = "";
+document.getElementById("credits").value = "";
 }
 
 function updateGPA() {
