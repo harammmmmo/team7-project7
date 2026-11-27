@@ -11,10 +11,23 @@ function addCourse() {
         return;
     }
 
-    courses.push({ name, credits, grade });
+ const course = { name, credits, grade };
+courses.push(course);
 
     const list = document.getElementById("courseList");
     const item = document.createElement("li");
-    item.textContent = `${name} / ${credits}학점 / ${grade}`;
+   
+
+    item.textContent = `${name} / ${credits}학점 / ${grade} `;
+
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "삭제";
+
+    deleteButton.onclick = function() {
+        courses.splice(courses.indexOf(course), 1);
+        item.remove();
+    };
+
+    item.appendChild(deleteButton);
     list.appendChild(item);
 }
