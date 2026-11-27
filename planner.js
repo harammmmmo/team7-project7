@@ -59,3 +59,9 @@ function recommendGrades(courses, requiredGPA) {
         grade: grade
     }));
 }
+// 목표 평점 달성 가능 여부 확인
+function isAchievable(requiredGPA) {
+    return Number.isFinite(requiredGPA)
+        && requiredGPA >= 0
+        && requiredGPA <= 4.5;
+}
